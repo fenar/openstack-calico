@@ -17,6 +17,7 @@ NEUTRON_EXT_NET_GW="172.27.$((v4num+3)).254"
 NEUTRON_EXT_NET_CIDR="172.27.$((v4num+2)).0/23"
 NEUTRON_EXT_NET_FLOAT_RANGE_START="172.27.$((v4num+3)).150"
 NEUTRON_EXT_NET_FLOAT_RANGE_END="172.27.$((v4num+3)).200"
+NEUTRON_EXT_NET_DNS="8.8.8.8"
 
 keystone=$(juju status keystone | grep keystone/0 | awk '{print $5}' )
 
@@ -36,7 +37,7 @@ neutron subnet-create --gateway $NEUTRON_SUBNET_GW --enable-dhcp --ip-version 4 
 
 #EXT NET
 neutron net-create $NEUTRON_EXT_NET_NAME --router:external True
-neutron subnet-create --gateway $NEUTRON_EXT_NET_GW --enable-dhcp --ip-version 4 --name $NEUTRON_EXT_SUBNET_NAME $NEUTRON_EXT_NET_NAME $NEUTRON_EXT_NET_CIDR
+neutron subnet-create --gateway $NEUTRON_EXT_NET_GW --enable-dhcp --ip-version 4 --allocation-pool start=$NEUTRON_EXT_NET_FLOAT_RANGE_START,end=$NEUTRON_EXT_NET_FLOAT_RANGE_END --dns-nameserver $NEUTRON_EXT_NET_DNS --name $NEUTRON_EXT_SUBNET_NAME $NEUTRON_EXT_NET_NAME $NEUTRON_EXT_NET_CIDR
 
 #Provider Router
 neutron router-create ext-router
