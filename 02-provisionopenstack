@@ -7,9 +7,15 @@ echo "This command is run to configure a V4N Openstack Calico deployment"
 v4num=`hostname | cut -c 10- -`
 
 NEUTRON_NET_NAME="calico_net"
-NEUTRON_NET_CIDR="172.27.((v4num+3)).0/27"
+NEUTRON_NET_CIDR="192.168.$((v4num+3)).0/24"
 NEUTRON_SUBNET_NAME="calico_subnet"
-NEUTRON_DNS="8.8.8.8"
+NEUTRON_SUBNET_GW="192.168.$((v4num+3)).1"
+
+NEUTRON_EXT_NET_NAME="ext-net"
+NEUTRON_EXT_NET_GW="172.27.$((obnum+3)).254"
+NEUTRON_EXT_NET_CIDR="172.27.$((obnum+2)).0/23"
+NEUTRON_EXT_NET_FLOAT_RANGE_START="172.27.$((obnum+3)).150"
+NEUTRON_EXT_NET_FLOAT_RANGE_END="172.27.$((obnum+3)).200"
 
 keystone=$(juju status keystone | grep keystone/0 | awk '{print $5}' )
 
@@ -23,8 +29,18 @@ export OS_AUTH_URL=${OS_AUTH_PROTOCOL:-http}://`juju run --unit keystone/0 'unit
 
 source nova.rc
 
+# Tenant Network
 neutron net-create --shared $NEUTRON_NET_NAME
-neutron subnet-create $NEUTRON_NET_NAME $NEUTRON_NET_CIDR --dns-nameserver $NEUTRON_DNS --name $NEUTRON_SUBNET_NAME
+neutron subnet-create --gateway $NEUTRON_SUBNET_GW --enable-dhcp --ip-version 4 --name $NEUTRON_SUBNET_NAME $NEUTRON_NET_NAME $NEUTRON_NET_CIDR
+
+#EXT NET
+neutron net-create $NEUTRON_EXT_NET_NAME --router:external True
+neutron subnet-create public $NEUTRON_EXT_NET_CIDR
+
+#Provider Router
+neutron router-create ext-router
+neutron router-interface-add ext-router $NEUTRON_EXT_NET_NAME
+neutron router-gateway-set ext-router $NEUTRON_EXT_NET_NAME
 
 #Configure the default security group to allow ICMP and SSH
 openstack security group rule create --proto icmp default

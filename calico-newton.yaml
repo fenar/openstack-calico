@@ -17,7 +17,7 @@ services:
       gui-": "750"
       gui-y: "0"
     to: 
-      - lxd:0
+      - lxd:1
   etcd:
     charm: "cs:etcd"
     num_units: 1
@@ -25,7 +25,7 @@ services:
       "gui-x": "182"
       "gui-y": "-586"
     to: 
-      - lxd:1
+      - lxd:2
   glance:
     charm: "cs:xenial/glance"
     num_units: 1
@@ -35,7 +35,7 @@ services:
       "gui-x": "2099"
       "gui-y": "1267.5"
     to:
-      - lxd:2
+      - lxd:3
   keystone:
     charm: "cs:xenial/keystone"
     num_units: 1
@@ -46,7 +46,7 @@ services:
       "gui-x": "500"
       "gui-y": "0"
     to:
-      - lxd:3
+      - lxd:4
   mysql:
     charm: "cs:xenial/percona-cluster"
     num_units: 1
@@ -54,7 +54,7 @@ services:
       "gui-x": "0"
       "gui-y": "250"
     to:
-      - lxd:4
+      - lxd:5
   neutron-api:
     charm: "cs:~project-calico/neutron-api"
     num_units: 1
@@ -63,6 +63,7 @@ services:
       neutron-plugin: Calico
       neutron-security-groups: true
       etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+      neutron-external-network: ext-net
     annotations:
       "gui-x": "500"
       "gui-y": "500"
