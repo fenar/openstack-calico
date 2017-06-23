@@ -12,10 +12,11 @@ NEUTRON_SUBNET_NAME="calico_subnet"
 NEUTRON_SUBNET_GW="192.168.$((v4num+3)).1"
 
 NEUTRON_EXT_NET_NAME="ext-net"
-NEUTRON_EXT_NET_GW="172.27.$((obnum+3)).254"
-NEUTRON_EXT_NET_CIDR="172.27.$((obnum+2)).0/23"
-NEUTRON_EXT_NET_FLOAT_RANGE_START="172.27.$((obnum+3)).150"
-NEUTRON_EXT_NET_FLOAT_RANGE_END="172.27.$((obnum+3)).200"
+NEUTRON_EXT_SUBNET_NAME="ext-subnet"
+NEUTRON_EXT_NET_GW="172.27.$((v4num+3)).254"
+NEUTRON_EXT_NET_CIDR="172.27.$((v4num+2)).0/23"
+NEUTRON_EXT_NET_FLOAT_RANGE_START="172.27.$((v4num+3)).150"
+NEUTRON_EXT_NET_FLOAT_RANGE_END="172.27.$((v4num+3)).200"
 
 keystone=$(juju status keystone | grep keystone/0 | awk '{print $5}' )
 
@@ -35,11 +36,11 @@ neutron subnet-create --gateway $NEUTRON_SUBNET_GW --enable-dhcp --ip-version 4 
 
 #EXT NET
 neutron net-create $NEUTRON_EXT_NET_NAME --router:external True
-neutron subnet-create public $NEUTRON_EXT_NET_CIDR
+neutron subnet-create --gateway $NEUTRON_EXT_NET_GW --enable-dhcp --ip-version 4 --name $NEUTRON_EXT_SUBNET_NAME $NEUTRON_EXT_NET_NAME $NEUTRON_EXT_NET_CIDR
 
 #Provider Router
 neutron router-create ext-router
-neutron router-interface-add ext-router $NEUTRON_EXT_NET_NAME
+neutron router-interface-add ext-router $NEUTRON_SUBNET_NAME
 neutron router-gateway-set ext-router $NEUTRON_EXT_NET_NAME
 
 #Configure the default security group to allow ICMP and SSH
