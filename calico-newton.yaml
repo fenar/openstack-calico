@@ -1,4 +1,4 @@
-series: xenial
+\series: xenial
 services:
   bird:
     charm: "cs:~project-calico/bird"
@@ -7,7 +7,7 @@ services:
       gui-x: "84"
       gui-y: "712.5"
     to: 
-      - "3"
+      - "0"
   cinder:
     charm: "cs:xenial/cinder"
     num_units: 1
@@ -25,7 +25,7 @@ services:
       "gui-x": "182"
       "gui-y": "-586"
     to: 
-      - lxd:0
+      - lxd:1
   glance:
     charm: "cs:xenial/glance"
     num_units: 1
@@ -35,7 +35,7 @@ services:
       "gui-x": "2099"
       "gui-y": "1267.5"
     to:
-      - lxd:0
+      - lxd:2
   keystone:
     charm: "cs:xenial/keystone"
     num_units: 1
@@ -46,7 +46,7 @@ services:
       "gui-x": "500"
       "gui-y": "0"
     to:
-      - lxd:0
+      - lxd:3
   mysql:
     charm: "cs:xenial/percona-cluster"
     num_units: 1
@@ -54,7 +54,7 @@ services:
       "gui-x": "0"
       "gui-y": "250"
     to:
-      - lxd:1
+      - lxd:4
   neutron-api:
     charm: "cs:~project-calico/neutron-api"
     num_units: 1
@@ -67,7 +67,7 @@ services:
       "gui-x": "500"
       "gui-y": "500"
     to:
-      - lxd:1
+      - lxd:0
   neutron-calico:
     charm: "cs:~project-calico/neutron-calico"
     options:
@@ -90,7 +90,7 @@ services:
       - lxd:1
   nova-compute:
     charm: "cs:xenial/nova-compute"
-    num_units: 3
+    num_units: 5
     options:
       enable-live-migration: true
       enable-resize: true
@@ -104,6 +104,8 @@ services:
       - "1"
       - "2"
       - "3"
+      - "4"
+      - "5"
   openstack-dashboard:
     charm: "cs:xenial/openstack-dashboard"
     num_units: 1
@@ -114,7 +116,7 @@ services:
       "gui-x": "500"
       "gui-y": "-250"
     to:
-      - lxd:1
+      - lxd:2
   rabbitmq-server:
     charm: "cs:xenial/rabbitmq-server"
     num_units: 1
@@ -122,7 +124,15 @@ services:
       "gui-x": "500"
       "gui-y": "250"
     to:
-      - lxd:1
+      - lxd:3
+  easyrsa:
+    charm: "cs:~containers/easyrsa"
+    num_units: 1
+    annotations:
+      "gui-x": "500"
+      "gui-y": "250"
+    to:
+      - lxd:4
 relations:
   - - "nova-cloud-controller:image-service"
     - "glance:image-service"
@@ -178,6 +188,8 @@ relations:
     - "mysql:shared-db"
   - - "neutron-api:identity-service"
     - "keystone:identity-service"
+  - - "etcd"
+    - "easyrsa"
 machines: 
   "0":
     series: xenial
@@ -189,5 +201,11 @@ machines:
     series: xenial
     constraints: arch=amd64 tags=physical
   "3":
+    series: xenial
+    constraints: arch=amd64 tags=physical
+  "4":
+    series: xenial
+    constraints: arch=amd64 tags=physical
+  "5":
     series: xenial
     constraints: arch=amd64 tags=physical
