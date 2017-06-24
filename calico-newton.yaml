@@ -62,7 +62,8 @@ services:
       openstack-origin: cloud:xenial-newton
       neutron-plugin: Calico
       neutron-security-groups: true
-      etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+      #etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+      etcd-package-url: http://http.kali.org/pool/main/e/etcd-fs/etcd-fs_0.0+git20140621.0.395eacb-1+b1_amd64.deb
       neutron-external-network: ext-net
     annotations:
       "gui-x": "500"
@@ -73,7 +74,8 @@ services:
     charm: "cs:~project-calico/neutron-calico"
     options:
       openstack-origin: cloud:xenial-newton
-      etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+      # etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+       etcd-package-url: http://http.kali.org/pool/main/e/etcd-fs/etcd-fs_0.0+git20140621.0.395eacb-1+b1_amd64.deb
     annotations:
       "gui-x": "549.5665283203125"
       "gui-y": "804.588134765625"
