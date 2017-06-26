@@ -1,6 +1,6 @@
 #!/bin/bash
-#
-# Fatih E. NAR (fenar)
+# Author: Fatih E. NAR
+# 
 set -eaux
 
 obnum=`hostname | cut -c 10- -`
