@@ -1,4 +1,6 @@
 #!/bin/bash
+# Author: Fatih E. NAR
+# 
 set -x
 export v4num=${HOSTNAME:9}
 
