@@ -1,7 +1,6 @@
 #!/bin/bash
-#
+# Author: Fatih E. NAR
 # Calico Deployment Kick-Starter
-# Author:Fatih E. Nar (fenar)
 #
 model=`juju list-models |awk '{print $1}'|grep calico`
 
