@@ -1,4 +1,6 @@
-\series: xenial
+# Author: Fatih E. NAR
+# 
+series: xenial
 services:
   bird:
     charm: "cs:~project-calico/bird"
