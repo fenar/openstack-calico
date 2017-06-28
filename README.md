@@ -1,4 +1,4 @@
-# openstack-calico external BGP Route integration <br>
+# Openstack-Calico External BGP Route Integration <br>
 
 Openstack Newton with Calico Embedded as Networking Fabric <br>
 In order to get V4N-Mikrotik Router BGP Setup : <br>
