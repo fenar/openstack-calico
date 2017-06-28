@@ -1,6 +1,6 @@
 # Openstack-Calico External BGP Route Integration <br>
 
-Openstack Newton with Calico Embedded as Networking Fabric. In order to get external access to VM@Openstack we wither manualy create route via a JumpHots or configure V4N-Mikrotik Router (site router) with BGP Peer Setup : <br>
+Openstack Newton with Calico Embedded as Networking Fabric. In order to get external access to VM@Openstack we either manualy create route via a JumpHots or configure V4N-Mikrotik Router (site router) with BGP Peer Setup : <br>
 
 Add following lines to /etc/bird/bird.conf @ bird (Route Reflector) machine <br>
 ```sh
