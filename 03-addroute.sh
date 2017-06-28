@@ -1,6 +1,7 @@
 #!/bin/bash
 # Author: Fatih E. NAR
-# 
+# This step is not necessary of you integrate external router via BGP Peer setup
+#
 set -x
 export v4num=${HOSTNAME:9}
 
