@@ -5,15 +5,15 @@ In order to get V4N-Mikrotik Router BGP Setup : <br>
 
 Add following lines to /etc/bird/bird.conf @ bird machine <br>
 ```sh
-protocol bgp ExtRouter { <br>
-  description "ExtRouter"; <br>
-  local as 64511; <br>
-  neighbor [Mikrotik-Router-IP-Addr] as 64511; <br>
-  multihop; <br>
-  rr client; <br>
-  import all; <br>
-  export all; <br>
-} <br>
+protocol bgp ExtRouter {
+  description "ExtRouter"; 
+  local as 64511; 
+  neighbor [Mikrotik-Router-IP-Addr] as 64511; 
+  multihop; 
+  rr client;
+  import all;
+  export all; 
+} 
 ```
 On the Mikrotik Router:<br>
 (a) Change the AS number of the router: BGP → Instances, default, AS 64511, Client To Client Reflection ✓. <br>
