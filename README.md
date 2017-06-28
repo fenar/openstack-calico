@@ -3,7 +3,7 @@
 Openstack Newton with Calico Embedded as Networking Fabric <br>
 In order to get V4N-Mikrotik Router BGP Setup : <br>
 
-Add following lines to /etc/bird/bird.conf @ bird machine <br>
+Add following lines to /etc/bird/bird.conf @ bird (Route Reflector) machine <br>
 ```sh
 protocol bgp ExtRouter {
   description "ExtRouter"; 
