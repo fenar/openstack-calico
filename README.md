@@ -21,4 +21,4 @@ On the Mikrotik Router:<br>
     -> Check status: BGP → Peers, note state=established <br>
 (c) Deploy VMs on Openstack taht are attached to [calico_subnet]
 (d) Check routes: IP → Routes, note for example: [calico_subnet]/24 via <Nova-Compute Mgmt IP Addr>  Marked DAb (Dynamic, Active, bgp). <br>
-    -> verify hosts on the work subnet can ping 192.168.143.0/24 network <br>
+    -> verify hosts on the work subnet can ping 192.168.[v4n#+3].0/24 network <br>
