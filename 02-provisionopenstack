@@ -66,8 +66,8 @@ openstack quota  set --ram 204800 --cores 200 --instances 100 admin
 neutron quota-update --security-group 100 --security-group-rule 500 
 
 #Glance image uploads
+glance image-create --name=Cirros-QCOW --visibility=public --container-format=ovf --disk-format=qcow2 <  /srv/data/cirros-0.3.5-x86_64-disk.img
 glance image-create --name=Trusty-QCOW --visibility=public --container-format=ovf --disk-format=qcow2 <  /srv/data/trusty-server-cloudimg-amd64-disk1.img
 glance image-create --name=Xenial-QCOW --visibility=public --container-format=ovf --disk-format=qcow2 <  /srv/data/xenial-server-cloudimg-amd64-disk1.img
-glance image-create --name=Cirros-QCOW --visibility=public --container-format=ovf --disk-format=qcow2 <  /srv/data/cirros-0.3.5-x86_64-disk.img
 exit
 
