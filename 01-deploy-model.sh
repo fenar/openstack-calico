@@ -4,6 +4,7 @@
 #
 git clone https://github.com/projectcalico/charm-neutron-api.git
 git clone https://github.com/projectcalico/charm-neutron-calico.git
+git clone https://github.com/projectcalico/charm-bird.git
 
 model=`juju list-models |awk '{print $1}'|grep calico`
 
