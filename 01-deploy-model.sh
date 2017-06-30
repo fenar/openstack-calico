@@ -3,7 +3,6 @@
 # Calico Deployment Kick-Starter
 #
 git clone https://github.com/projectcalico/charm-neutron-api.git
-git clone https://github.com/projectcalico/charm-neutron-calico.git
 
 model=`juju list-models |awk '{print $1}'|grep calico`
 
