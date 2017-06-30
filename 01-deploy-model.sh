@@ -2,7 +2,7 @@
 # Author: Fatih E. NAR
 # Calico Deployment Kick-Starter
 #
-git clone https://github.com/projectcalico/charm-neutron-api.git
+git clone -b ocata-support https://github.com/projectcalico/charm-neutron-api.git
 
 model=`juju list-models |awk '{print $1}'|grep calico`
 
