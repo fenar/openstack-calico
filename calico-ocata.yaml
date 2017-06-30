@@ -4,7 +4,7 @@
 series: xenial
 services:
   bird:
-    charm: "./charm-bird"
+    charm: "cs:~project-calico/bird"
     num_units: 1
     annotations:
       gui-x: "84"
