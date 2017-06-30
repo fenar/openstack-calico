@@ -4,7 +4,7 @@
 series: xenial
 services:
   bird:
-    charm: "cs:~project-calico/bird"
+    charm: "./charm-bird"
     num_units: 1
     annotations:
       gui-x: "84"
@@ -59,13 +59,12 @@ services:
     to:
       - lxd:5
   neutron-api:
-    charm: "cs:~project-calico/neutron-api"
+    charm: "./charm-neutron-api"
     num_units: 1
     options:
-      openstack-origin: cloud:xenial-newton
+      openstack-origin: cloud:xenial-ocata
       neutron-plugin: Calico
       neutron-security-groups: true
-      #etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
       etcd-package-url: http://http.kali.org/pool/main/e/etcd-fs/etcd-fs_0.0+git20140621.0.395eacb-1+b1_amd64.deb
       neutron-external-network: ext-net
     annotations:
@@ -74,10 +73,9 @@ services:
     to:
       - lxd:0
   neutron-calico:
-    charm: "cs:~project-calico/neutron-calico"
+    charm: "./charm-neutron-calico"
     options:
-      openstack-origin: cloud:xenial-newton
-      #etcd-package-url: http://launchpadlibrarian.net/274096873/etcd_2.3.7+dfsg-4_amd64.deb
+      openstack-origin: cloud:xenial-ocata
       etcd-package-url: http://http.kali.org/pool/main/e/etcd-fs/etcd-fs_0.0+git20140621.0.395eacb-1+b1_amd64.deb
     annotations:
       "gui-x": "549.5665283203125"
