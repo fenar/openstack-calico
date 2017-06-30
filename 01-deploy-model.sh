@@ -3,16 +3,17 @@
 # Calico Deployment Kick-Starter
 #
 git clone https://github.com/projectcalico/charm-neutron-api.git
+git clone https://github.com/projectcalico/charm-neutron-calico.git
 
 model=`juju list-models |awk '{print $1}'|grep calico`
 
 if [[ ${model:0:6} == "calico" ]]; then
 	juju switch calico
-     	juju deploy calico-newton.yaml
+     	juju deploy calico-ocata.yaml
 else
 	juju add-model calico
 	juju switch calico
-     	juju deploy calico-newton.yaml
+     	juju deploy calico-ocata.yaml
 fi
 
 echo "Login to the juju-gui to see status or use juju status"
