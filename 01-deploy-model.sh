@@ -2,6 +2,8 @@
 # Author: Fatih E. NAR
 # Calico Deployment Kick-Starter
 #
+git clone https://github.com/projectcalico/charm-neutron-api.git
+
 model=`juju list-models |awk '{print $1}'|grep calico`
 
 if [[ ${model:0:6} == "calico" ]]; then
