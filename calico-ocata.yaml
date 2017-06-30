@@ -73,7 +73,7 @@ services:
     to:
       - lxd:0
   neutron-calico:
-    charm: "./charm-neutron-calico"
+    charm: "cs:~project-calico/neutron-calico"
     options:
       openstack-origin: cloud:xenial-ocata
       etcd-package-url: http://http.kali.org/pool/main/e/etcd-fs/etcd-fs_0.0+git20140621.0.395eacb-1+b1_amd64.deb
