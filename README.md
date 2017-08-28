@@ -26,5 +26,5 @@ if etcd charm deployment fails with : <br>
 install error: cannot communicate with server: Post http://localhost/v2/snaps/etcd: dial unix /run/snapd.socket: connect: connection refused <br><br>
 
 Then restart snapd in etcd machine: <br>
-$ sudo systemctl restart snapd.service
+$ sudo systemctl restart snapd.service <br>
 $ systemctl status snapd.service
