@@ -21,3 +21,10 @@ On the Mikrotik Router:<br>
 (c) Deploy VMs on Openstack taht are attached to [calico_subnet]
 (d) Check routes: IP → Routes, note for example: [calico_subnet]/24 via <Nova-Compute Mgmt IP Addr>  Marked DAb (Dynamic, Active, bgp). <br>
     -> verify hosts on the work subnet can ping 192.168.[v4n#+3].0/24 network <br>
+
+if etcd charm deployment fails with : <br>
+install error: cannot communicate with server: Post http://localhost/v2/snaps/etcd: dial unix /run/snapd.socket: connect: connection refused <br><br>
+
+Then restart snapd in etcd machine: <br>
+$ sudo systemctl restart snapd.service
+$ systemctl status snapd.service
